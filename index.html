@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail Page - ETHNIC BOUTIQUE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.6;
+    }
+    @media (max-width: 768px) { ... }
+    /* Promo Bar */
+    .promo-bar {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      padding: 10px;
+    }
+    .promo-bar a {
+      color: #fff;
+      font-weight: 600;
+      margin-left: 6px;
+      text-decoration: underline;
+    }
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      border-bottom: 1px solid #eee;
+    }
+    /* Make header sticky at top */
+header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 100;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Ensure promo bar fits inside header */
+.promo-bar {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 15px;
+  font-size: 1rem;
+  margin: 5px auto;
+  display: inline-block;
+  border-radius: 6px;
+}
+
+.promo-bar a {
+  color: #ffcc00;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-left: 8px;
+}
+
+.promo-bar a:hover {
+  color: #fff;
+}
+
+/* Logo gradient styling */
+.logo a {
+  font-size: 2rem;
+  font-weight: 800;
+  text-decoration: none;
+  background: linear-gradient(45deg, #ff3300, #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* Nav links */
+.nav-links {
+  margin-top: 15px;
+}
+
+.nav-links a {
+  color: purple;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 10px;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+    .logo {
+      font-weight: 700;
+      font-size: 24px;
+    }
+    .search-bar input {
+      padding: 10px 14px;
+      width: 320px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .header-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: 14px;
+      padding: 15px 60px;
+      color: #777;
+    }
+    /* Product Section */
+    .container {
+      display: flex;
+      gap: 50px;
+      padding: 40px 60px;
+    }
+    .thumbnails {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .thumbnails img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s ease-in-out;
+    }
+    .thumbnails img:hover {
+      border-color: #000;
+    }
+    .main-image img {
+      width: 450px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    }
+    .product-info {
+      flex: 1;
+    }
+    .product-info h1 {
+      margin-top: 0;
+      font-size: 28px;
+      font-weight: 600;
+    }
+    .price {
+      font-size: 22px;
+      margin: 12px 0;
+    }
+    .price .old {
+      text-decoration: line-through;
+      color: #999;
+      margin-left: 12px;
+      font-size: 16px;
+    }
+    .price .discount {
+      color: red;
+      font-weight: 600;
+      margin-left: 12px;
+    }
+    .rating {
+      color: #f5b50a;
+      margin-bottom: 15px;
+    }
+    .options {
+      margin: 20px 0;
+    }
+    .options label {
+      display: block;
+      font-weight: 500;
+      margin: 10px 0 6px;
+    }
+    .sizes button, .colors button {
+      margin: 5px;
+      padding: 10px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #fff;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    .sizes button:hover, .colors button:hover {
+      border-color: #000;
+    }
+    .sizes button.active, .colors button.active {
+      background: #000;
+      color: #fff;
+    }
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .quantity button {
+      padding: 6px 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #f5f5f5;
+      font-size: 16px;
+    }
+    .add-to-cart {
+      display: block;
+      margin-top: 24px;
+      padding: 14px;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .add-to-cart:hover {
+      background: #333;
+    }
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 30px;
+      margin: 50px 60px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    .tabs div {
+      padding-bottom: 12px;
+      cursor: pointer;
+      font-weight: 500;
+      color: #555;
+    }
+    .tabs .active {
+      border-bottom: 3px solid #000;
+      font-weight: 600;
+      color: #000;
+    }
+    .reviews {
+      padding: 0 60px 60px;
+    }
+    .review {
+      border: 1px solid #eee;
+      padding: 18px;
+      margin: 14px 0;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+    .review strong {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    /* Suggestions */
+    .suggestions {
+      padding: 50px 60px;
+      background: #f9f9f9;
+    }
+    .suggestions h2 {
+      margin-bottom: 24px;
+      text-align: center;
+      font-size: 22px;
+    }
+    .suggestions .products {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+    }
+    .suggestions .products div {
+      text-align: center;
+      width: 160px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: 0.2s;
+    }
+    .suggestions .products div:hover {
+      transform: translateY(-4px);
+    }
+    .suggestions img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    /* Footer */
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 50px 60px;
+    }
+    footer .columns {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    footer h4 {
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    footer a {
+      display: block;
+      color: #ccc;
+      margin: 5px 0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    footer a:hover {
+      color: #fff;
+    }
+    /* === RESPONSIVE DESIGN RULES === */
+
+/* For tablets (portrait and landscape) */
+@media (max-width: 1024px) {
+  header {
+    padding: 15px 30px;
+  }
+  .search-bar input {
+    width: 240px;
+  }
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-image img {
+    width: 80%;
+  }
+}
+
+/* For phones (portrait) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .search-bar input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .promo-bar {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .container {
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .thumbnails {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .thumbnails img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .main-image img {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .product-info {
+    text-align: center;
+  }
+
+  footer .columns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer a {
+    font-size: 13px;
+  }
+
+  .add-to-cart {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+  }
+}
+
+/* For very small screens (less than 480px) */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .promo-bar {
+    font-size: 11px;
+  }
+
+  .breadcrumb {
+    font-size: 12px;
+  }
+
+  .product-info h1 {
+    font-size: 22px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+}
+
+  </style>
+</head>
+<body>
+   <div class="logo">
+    <a href="index.html">EthnicBoutique</a>
+  </div>
+
+ <div class="signup-banner">
+  Sign up and get 20% off on your first order!
+  <button class="signup-btn">Sign Up Now</button>
+</div>
+
+  <!-- Header -->
+
+<header>
+
+  <nav class="nav-links">
+    <a href="home.html">Home</a>
+    <a href="women.html">Women</a> <!-- changed from Shop -->
+    <a href="men.html">Men</a>
+    <a href="children.html">Children</a> <!-- changed from Karta Suits -->
+    <a href="subscribers.html" class="signup-btn">View Subscribers</a>
+  </nav>
+
+  <div class="header-icons">
+    🛒 👤
+  </div>
+</header>
+
+
+
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    HOME
+  </div>
+
+  <!-- Product Section -->
+  <div class="container">
+    <div class="thumbnails">
+      <img src="https://i.postimg.cc/y8xX6QGG/3hk2b5ha.png" onclick="changeImage(this)">
+      <img src="https://i.postimg.cc/KYgPBKmZ/sarnopd8.png" onclick="changeImage(this)">
+      <img src="https://i.postimg.cc/DwNQSQkB/usvflfx6.png" onclick="changeImage(this)">
+    </div>
+    <div class="main-image">
+      <img id="mainProduct" src="https://i.postimg.cc/G2wkQcp1/v41q8hrr.png">
+    </div>
+    <div class="product-info">
+      <h1>One Life Graphic Kurta Suits</h1>
+      <div class="rating">⭐⭐⭐⭐☆ (4.5/5)</div>
+      <div class="price">$260 <span class="old">$300</span><span class="discount">-40%</span></div>
+      <p>This graphic Suits is perfect for any occasion. Crafted from soft and breathable fabric, it offers superior comfort and style.</p>
+
+      <div class="options">
+        <label>Select Color:</label>
+        <div class="colors">
+          <button>🟢</button>
+          <button class="active">⚫</button>
+          <button>🔵</button>
+        </div>
+        <label>Select Size:</label>
+        <div class="sizes">
+          <button>Small</button>
+          <button>Medium</button>
+          <button class="active">Large</button>
+          <button>X-Large</button>
+        </div>
+      </div>
+
+      <div class="quantity">
+        <button>-</button>
+        <span>1</span>
+        <button>+</button>
+      </div>
+
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="active">Product Details</div>
+    <div>Rating & Reviews</div>
+    <div>FAQs</div>
+  </div>
+
+  <!-- Reviews -->
+  <div class="reviews">
+    <div class="review">
+      <strong>Samantha D.</strong>
+      ⭐⭐⭐⭐⭐  
+      <p>"I absolutely love this Karta Suits! The design is unique and the fabric feels comfortable. It's my go-to shirt!"</p>
+    </div>
+    <div class="review">
+      <strong>Alex M.</strong>
+      ⭐⭐⭐⭐☆  
+      <p>"Exceeded my expectations! Vibrant colors, great quality, and stylish design."</p>
+    </div>
+  </div>
+
+  <!-- Suggestions -->
+  <div class="suggestions">
+    <h2>You Might Also Like</h2>
+    <div class="products">
+      <div>
+        <img src="https://i.postimg.cc/sXdpcV2B/wkl0bsfm.png">
+        <p>Classic Sherwaani</p>
+        <p>$212</p>
+      </div>
+      <div>
+        <img src="https://i.postimg.cc/PxW1VBL6/ws9ssaqk.png">
+        <p>Gradient Graphic Kurta Suits</p>
+        <p>$145</p>
+      </div>
+      <div>
+        <img src="https://i.postimg.cc/y8xX6QGG/3hk2b5ha.png">
+        <p>Black Kurta Suits</p>
+        <p>$120</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="columns">
+      <div>
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="#">Customer Support</a>
+        <a href="#">Delivery Details</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="#">Blog</a>
+        <a href="#">eBooks</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function changeImage(el) {
+      document.getElementById('mainProduct').src = el.src;
+    }
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const signupBtn = document.getElementById("signupBtn");
+    const modal = document.getElementById("signupModal");
+    const closeBtn = document.querySelector(".close");
+    const form = document.getElementById("signupForm");
+
+    // Open modal when "Sign Up Now" is clicked
+    signupBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.style.display = "flex";
+    });
+
+    // Close modal when X is clicked
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    // Close modal when clicking outside the box
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Handle form submission (you can link it to your backend later)
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      alert(`Thank you for signing up, ${email}! 🎉`);
+      modal.style.display = "none";
+      form.reset();
+    });
+  });
+</script>
+<script>
+  // Move promo bar below header
+  document.addEventListener("DOMContentLoaded", () => {
+    const promo = document.querySelector(".promo-bar");
+    const header = document.querySelector("header");
+    header.insertAdjacentElement("afterend", promo);
+  });
+</script>
+<!-- Golden Spark Animation -->
+<canvas id="sparkCanvas"></canvas>
+
+<script>
+const canvas = document.getElementById('sparkCanvas');
+const ctx = canvas.getContext('2d');
+let sparks = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Create sparkles
+for (let i = 0; i < 60; i++) {
+  sparks.push({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    radius: Math.random() * 2,
+    alpha: Math.random(),
+    speed: Math.random() * 0.6 + 0.2
+  });
+}
+
+function animateSparks() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let spark of sparks) {
+    ctx.beginPath();
+    ctx.arc(spark.x, spark.y, spark.radius, 0, 2 * Math.PI);
+    ctx.fillStyle = `rgba(255, 204, 51, ${spark.alpha})`;
+    ctx.fill();
+
+    spark.y -= spark.speed;
+    if (spark.y < 0) {
+      spark.y = canvas.height;
+      spark.x = Math.random() * canvas.width;
+    }
+  }
+  requestAnimationFrame(animateSparks);
+}
+animateSparks();
+
+// Canvas behind everything
+canvas.style.position = 'fixed';
+canvas.style.top = 0;
+canvas.style.left = 0;
+canvas.style.zIndex = '-1';
+canvas.style.pointerEvents = 'none';
+</script>
+<script>
+function createGoldGlow() {
+  const glow = document.createElement('div');
+  glow.classList.add('gold-glow');
+  document.body.appendChild(glow);
+
+  // Randomize position and size
+  glow.style.left = Math.random() * 100 + "vw";
+  glow.style.animationDuration = 6 + Math.random() * 8 + "s";
+  glow.style.width = glow.style.height = Math.random() * 10 + 6 + "px";
+  
+  // Remove after animation
+  setTimeout(() => glow.remove(), 10000);
+}
+
+// Generate multiple glowing particles continuously
+setInterval(createGoldGlow, 250);
+</script>
+<script>
+document.querySelector('.signup-btn').addEventListener('click', () => {
+  alert('🎉 Thank you for signing up! You’ll receive 20% off on your first order.');
+});
+</script>
+<!-- 🌟 Signup Modal Popup -->
+<div class="signup-modal" id="signupModal">
+  <div class="signup-content">
+    <span class="close-btn" id="closeSignup">&times;</span>
+    <h2>Sign Up and Get 20% Off 🎉</h2>
+    <p>Join our exclusive mailing list and get special offers!</p>
+    <form id="signupForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p class="success-message" id="successMsg"></p>
+  </div>
+</div>
+<script>
+  const signupBtn = document.querySelector('.signup-btn');
+  const modal = document.getElementById('signupModal');
+  const closeBtn = document.getElementById('closeSignup');
+  const signupForm = document.getElementById('signupForm');
+  const successMsg = document.getElementById('successMsg');
+
+  // Open the modal
+  signupBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+
+  // Close the modal
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  // Close when clicking outside the form
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  // Handle form submission
+  signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!email) return;
+
+    // Save to localStorage
+    let users = JSON.parse(localStorage.getItem('signupUsers')) || [];
+    users.push({ name, email });
+    localStorage.setItem('signupUsers', JSON.stringify(users));
+
+    successMsg.textContent = `Thanks ${name || "there"}! You've signed up successfully.`;
+    signupForm.reset();
+
+    // Hide the form after success
+    setTimeout(() => {
+      modal.style.display = 'none';
+      successMsg.textContent = "";
+    }, 2000);
+  });
+</script>
+
+</body>
+</html>
+
