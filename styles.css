@@ -1,0 +1,727 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  background: #fff;
+  line-height: 1.6;
+}
+
+/* Promo Bar */
+.promo-bar {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+}
+.promo-bar a {
+  color: #fff;
+  font-weight: 600;
+  margin-left: 6px;
+  text-decoration: underline;
+}
+
+/* Header */
+/* Header Layout */
+header {
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Logo Styling */
+.logo a {
+  font-size: 2rem;
+  font-weight: 800;
+  text-decoration: none;
+  background: linear-gradient(45deg, #ff3300, #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* Promo Bar Below Logo */
+.promo-bar {
+  background-color: #000;
+  color: white;
+  padding: 8px 15px;
+  font-size: 1rem;
+  margin-top: 8px;
+  display: inline-block;
+  border-radius: 6px;
+}
+
+.promo-bar a {
+  color: #ffcc00;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-left: 8px;
+}
+
+.promo-bar a:hover {
+  color: #fff;
+}
+
+/* Navigation Links */
+.nav-links {
+  margin-top: 15px;
+}
+
+.nav-links a {
+  color: purple;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 10px;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.search-bar input {
+  padding: 10px 14px;
+  width: 320px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.header-icons {
+  display: flex;
+  gap: 20px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 14px;
+  padding: 15px 60px;
+  color: #777;
+}
+
+/* Product Section */
+.container {
+  display: flex;
+  gap: 50px;
+  padding: 40px 60px;
+}
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.thumbnails img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+.thumbnails img:hover {
+  border-color: #000;
+}
+.main-image img {
+  width: 450px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+.product-info {
+  flex: 1;
+}
+.product-info h1 {
+  margin-top: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+.price {
+  font-size: 22px;
+  margin: 12px 0;
+}
+.price .old {
+  text-decoration: line-through;
+  color: #999;
+  margin-left: 12px;
+  font-size: 16px;
+}
+.price .discount {
+  color: red;
+  font-weight: 600;
+  margin-left: 12px;
+}
+.rating {
+  color: #f5b50a;
+  margin-bottom: 15px;
+}
+.options {
+  margin: 20px 0;
+}
+.options label {
+  display: block;
+  font-weight: 500;
+  margin: 10px 0 6px;
+}
+.sizes button, .colors button {
+  margin: 5px;
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fff;
+  font-size: 14px;
+  transition: 0.2s;
+}
+.sizes button:hover, .colors button:hover {
+  border-color: #000;
+}
+.sizes button.active, .colors button.active {
+  background: #000;
+  color: #fff;
+}
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.quantity button {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #f5f5f5;
+  font-size: 16px;
+}
+.add-to-cart {
+  display: block;
+  margin-top: 24px;
+  padding: 14px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.add-to-cart:hover {
+  background: #333;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 30px;
+  margin: 50px 60px 20px;
+  border-bottom: 1px solid #ddd;
+}
+.tabs div {
+  padding-bottom: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #555;
+}
+.tabs .active {
+  border-bottom: 3px solid #000;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Reviews */
+.reviews {
+  padding: 0 60px 60px;
+}
+.review {
+  border: 1px solid #eee;
+  padding: 18px;
+  margin: 14px 0;
+  border-radius: 8px;
+  background: #fafafa;
+}
+.review strong {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* Suggestions */
+.suggestions {
+  padding: 50px 60px;
+  background: #f9f9f9;
+}
+.suggestions h2 {
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 22px;
+}
+.suggestions .products {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.suggestions .products div {
+  text-align: center;
+  width: 160px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+.suggestions .products div:hover {
+  transform: translateY(-4px);
+}
+.suggestions img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+/* Footer */
+footer {
+  background: #000;
+  color: #fff;
+  padding: 50px 60px;
+}
+footer .columns {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+footer h4 {
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+footer a {
+  display: block;
+  color: #ccc;
+  margin: 5px 0;
+  text-decoration: none;
+  font-size: 14px;
+}
+footer a:hover {
+  color: #fff;
+}
+
+/* -------------------
+   Responsive Design
+------------------- */
+
+/* Tablet */
+@media (max-width: 992px) {
+  header {
+    padding: 18px 30px;
+  }
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 30px;
+  }
+  .main-image img {
+    width: 100%;
+    max-width: 500px;
+  }
+  .product-info {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .tabs {
+    margin: 30px 30px 20px;
+  }
+  .reviews {
+    padding: 0 30px 40px;
+  }
+  .suggestions {
+    padding: 30px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .promo-bar {
+    font-size: 12px;
+    padding: 8px;
+  }
+  header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+  .search-bar input {
+    width: 100%;
+  }
+  .container {
+    padding: 20px;
+    gap: 20px;
+  }
+  .main-image img {
+    width: 100%;
+    max-width: 100%;
+  }
+  .thumbnails {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .thumbnails img {
+    width: 60px;
+    height: 60px;
+  }
+  .product-info h1 {
+    font-size: 22px;
+  }
+  .price {
+    font-size: 18px;
+  }
+  .add-to-cart {
+    font-size: 14px;
+    padding: 12px;
+  }
+  .tabs {
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px;
+  }
+  .suggestions h2 {
+    font-size: 18px;
+  }
+  footer {
+    padding: 30px 20px;
+  }
+  footer .columns {
+    flex-direction: column;
+  }
+}
+/* ===== PREMIUM RICH BLACK & GOLD THEME ===== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 40%, #2b1b00 100%);
+  color: #f5f5f5;
+  background-attachment: fixed;
+}
+
+/* Logo Style */
+.logo a {
+  color: #ffcc33;
+  font-weight: 800;
+  font-size: 28px;
+  text-decoration: none;
+  text-shadow: 0 0 8px rgba(255, 204, 51, 0.7);
+  transition: 0.3s;
+}
+.logo a:hover {
+  color: #ffd966;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+}
+
+/* Promo Bar BELOW the logo */
+.promo-bar {
+  background: linear-gradient(90deg, #000000, #2b1b00);
+  color: #ffcc33;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  border-top: 1px solid #ffcc33;
+  border-bottom: 1px solid #ffcc33;
+}
+.promo-bar a {
+  color: #ffd966;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.promo-bar a:hover {
+  color: #fff3b0;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 60px;
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid #ffcc33;
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Navigation Links */
+.nav-links a {
+  color: #f5f5f5;
+  text-decoration: none;
+  margin: 0 16px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.nav-links a:hover {
+  color: #ffcc33;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.8);
+}
+
+/* Buttons (like Add to Cart) */
+.add-to-cart {
+  background: #ffcc33;
+  color: #000;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.add-to-cart:hover {
+  background: #ffd966;
+  box-shadow: 0 0 15px rgba(255, 204, 51, 0.6);
+}
+
+/* Footer */
+footer {
+  background: #000;
+  color: #ccc;
+  border-top: 1px solid #ffcc33;
+}
+footer a:hover {
+  color: #ffcc33;
+}
+
+/* Smooth Fade Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+body, header, .promo-bar {
+  animation: fadeIn 1s ease-out;
+}
+/* 🦋 Butterfly Animation Styles */
+#butterfly-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.butterfly {
+  position: absolute;
+  bottom: -80px;
+  opacity: 0.9;
+  animation: flyButterfly linear infinite;
+  transform: rotate(10deg);
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+}
+
+@keyframes flyButterfly {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% { opacity: 1; }
+  50% {
+    transform: translateY(-50vh) translateX(20vw) rotate(20deg);
+  }
+  80% {
+    transform: translateY(-100vh) translateX(-20vw) rotate(-20deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(30vw) rotate(0deg);
+    opacity: 0;
+  }
+}
+/* Glowing Gold Animation */
+.gold-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ffd700 40%, rgba(255, 215, 0, 0) 80%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatUp 8s linear infinite, shimmer 2s ease-in-out infinite;
+  opacity: 0.85;
+  z-index: 1;
+  filter: blur(1px);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(1);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(50px) scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px #ffd700);
+  }
+  50% {
+    filter: drop-shadow(0 0 10px #ffb300);
+  }
+}
+/* ===== SIGNUP BANNER ===== */
+.signup-banner {
+  background-color: black;
+  color: #ffd700;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===== SIGNUP BUTTON ===== */
+.signup-btn {
+  background: linear-gradient(90deg, #ffb300, #ffd700);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.signup-btn:hover {
+  background: linear-gradient(90deg, #ffd700, #ffb300);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .signup-banner {
+    flex-direction: column;
+    font-size: 0.95rem;
+    padding: 15px 10px;
+    text-align: center;
+  }
+
+  .signup-btn {
+    width: 100%;
+    max-width: 250px;
+    font-size: 0.9rem;
+  }
+}
+/* 🌟 Signup Modal Styling */
+.signup-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+}
+
+.signup-content {
+  background: #111;
+  color: #ffd700;
+  border: 2px solid #ffb300;
+  border-radius: 15px;
+  padding: 30px 25px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  animation: fadeIn 0.4s ease;
+}
+
+.signup-content h2 {
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+.signup-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.signup-content input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.signup-content button {
+  background: linear-gradient(90deg, #ffb300, #ffd700);
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signup-content button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 28px;
+  color: #ffd700;
+  cursor: pointer;
+}
+
+.success-message {
+  margin-top: 15px;
+  color: #00ff88;
+  font-weight: bold;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .signup-content {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+

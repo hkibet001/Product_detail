@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribers | EthnicBoutique</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: black;
+      color: #ffd700;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #ffd700;
+      text-shadow: 0 0 10px #ffb300;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      max-width: 700px;
+      border-collapse: collapse;
+      background: #111;
+      border: 1px solid #ffb300;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    }
+
+    th, td {
+      border-bottom: 1px solid #333;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #222;
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background: rgba(255, 215, 0, 0.08);
+    }
+
+    button {
+      background: linear-gradient(90deg, #ffb300, #ffd700);
+      color: black;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+    }
+
+    #exportCSV, #clearAll {
+      margin: 15px 8px;
+      font-size: 0.95rem;
+    }
+
+    .delete-btn {
+      background: crimson;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .delete-btn:hover {
+      background: darkred;
+      transform: scale(1.08);
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    }
+
+    @media (max-width: 600px) {
+      table {
+        font-size: 0.9rem;
+      }
+      button {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔐 Admin Login Screen -->
+  <div id="authScreen" style="text-align:center;">
+    <h1 style="color:#ffd700; text-shadow:0 0 8px #ffb300;">🔐 Admin Access</h1>
+    <p>Enter your password to view subscribers:</p>
+    <div style="position: relative; display: inline-block;">
+      <input type="password" id="adminPass" placeholder="Enter password"
+        style="padding:10px 35px 10px 10px; border-radius:8px; border:1px solid #ffb300; background:#111; color:#ffd700; width:220px;">
+      <span id="togglePass"
+        style="position:absolute; right:10px; top:8px; cursor:pointer; color:#ffd700; font-size:18px;">👁️</span>
+    </div>
+    <br><br>
+    <button id="loginBtn"
+      style="background:linear-gradient(90deg,#ffb300,#ffd700); color:black; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold;">
+      Login
+    </button>
+    <p id="errorMsg" style="color:red; margin-top:10px; display:none;">Incorrect password ❌</p>
+  </div>
+
+  <!-- 📋 Main Content (hidden by default) -->
+  <div id="mainContent" style="display:none;">
+    <h1>✨ Subscriber List ✨</h1>
+    <table id="subscribersTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div style="text-align:center;">
+      <button id="exportCSV">Download CSV</button>
+      <button id="clearAll">Clear All</button>
+      <button onclick="window.location.href='index.html'">🏠 Back to Home</button>
+    </div>
+  </div>
+
+  <script>
+    // === CHANGE THIS PASSWORD TO YOUR OWN ===
+    const ADMIN_PASSWORD = "Adminpass";
+
+    const authScreen = document.getElementById('authScreen');
+    const mainContent = document.getElementById('mainContent');
+    const loginBtn = document.getElementById('loginBtn');
+    const errorMsg = document.getElementById('errorMsg');
+    const togglePass = document.getElementById('togglePass');
+    const adminPass = document.getElementById('adminPass');
+
+    // 👁️ Toggle password visibility
+    togglePass.addEventListener('click', () => {
+      if (adminPass.type === "password") {
+        adminPass.type = "text";
+        togglePass.textContent = "🙈";
+      } else {
+        adminPass.type = "password";
+        togglePass.textContent = "👁️";
+      }
+    });
+
+    // 🔑 Handle login
+    loginBtn.addEventListener('click', () => {
+      const input = adminPass.value.trim();
+      if (input === ADMIN_PASSWORD) {
+        authScreen.style.display = 'none';
+        mainContent.style.display = 'block';
+        loadSubscribers();
+      } else {
+        errorMsg.style.display = 'block';
+        adminPass.value = "";
+      }
+    });
+
+    // === Existing Table Logic ===
+    const tbody = document.querySelector('#subscribersTable tbody');
+    let users = JSON.parse(localStorage.getItem('signupUsers')) || [];
+
+    function loadSubscribers() {
+      renderTable();
+    }
+
+    function renderTable() {
+      tbody.innerHTML = '';
+      if (users.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4">No subscribers yet.</td></tr>`;
+        return;
+      }
+
+      users.forEach((user, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${user.name || "—"}</td>
+          <td>${user.email}</td>
+          <td><button class="delete-btn" data-index="${index}">Delete</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const index = e.target.getAttribute('data-index');
+          users.splice(index, 1);
+          localStorage.setItem('signupUsers', JSON.stringify(users));
+          renderTable();
+        });
+      });
+    }
+
+    // 📁 Export to CSV
+    document.getElementById('exportCSV').addEventListener('click', () => {
+      if (users.length === 0) return alert("No subscribers to export.");
+      const header = "Name,Email\n";
+      const csvRows = users.map(u => `${u.name || ""},${u.email}`).join("\n");
+      const blob = new Blob([header + csvRows], { type: "text/csv" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "subscribers.csv";
+      link.click();
+    });
+
+    // 🗑️ Clear all
+    document.getElementById('clearAll').addEventListener('click', () => {
+      if (confirm("Are you sure you want to delete all subscribers?")) {
+        users = [];
+        localStorage.removeItem('signupUsers');
+        renderTable();
+      }
+    });
+  </script>
+</body>
+</html>
